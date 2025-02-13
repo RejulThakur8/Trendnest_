@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+
+{% block start %}
+
+{% load static %}
+
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="alert alert-{{ message.tags }}" role="alert">
+    {{message}}
+</div>
+
+{% endfor %}
+{% endif %}
+
+<!-- Carousel -->
+<div id="carouselExampleFade" class="carousel slide slider carousel-fade w-90 m-2">
+    <div class="carousel-inner">
+      {% for b in banner %}
+      <form method="post" action="/baners/">
+        {% csrf_token %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <img src="{% static 'image/' %}{{b.banner}}" class="d-block w-100 rounded" alt="error">
+          <input type="hidden" value="{{b.banner_name}}" name="banners">
+          <input type="submit" value="{{b.banner_name}}" class="btn centered-btn">
+        </div>
+      </form>
+      {% endfor %}
+    </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon bg-black rounded-circle" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+    <span class="carousel-control-next-icon bg-black rounded-circle" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+<!-- Trends -->
+<div class="container my-3 trend bg-body-secondary">
+  <h2 class="fs-4 text-center pt-3">TRENDS</h2>
+    <div class="row row-cols-2 row-cols-md-4 row-cols-lg-4 g-4">
+      {% for scard in smallcard %}
+      <div class="col p-2">
+        <form method="POST" action="/trends/">
+          {% csrf_token %}
+          <div class="card w-100">
+            <img src="{% static 'image/' %}{{scard.s_card}}" class="img-thumbnail w-100" alt="...">
+            <input type="hidden" value="{{scard.brnd_bn }}" name="trends">
+            <input type="submit" value="{{scard.brnd_bn }}" class="btn btn-animated">
+          </div>
+        </form>
+      </div>
+      {% endfor %}
+    </div>
+</div>
+
+
+<!-- men Banner -->
+  {% for mbnr in mbnr %}
+  <form method="POST" action="/Men%clothing/">
+    {% csrf_token %}
+    <div class="container-fluid mt-4 px-0">
+      <img src="{% static 'image/' %}{{mbnr.mbanner_image}}" class="img-fluid w-100" alt="...">
+      <input type="hidden" value="{{mbnr.mbanner_name}}" name="Men-clothing">
+      <input type="submit" value="{{mbnr.mbanner_name}}" class="men-btn position-relative">
+    </div>
+  </form>
+  {% endfor %}
+
+<!-- Top Brands -->
+<div class="container my-4 bg-secondary-subtle">
+  <h2 class="fs-4 text-center pt-3">TOP BRANDS</h2>
+  <div class="row row-cols-3 row-cols-md-4 row-cols-lg-5 g-2">
+    {% for hcrd in hcard %}
+    <div class="col top-brand-card p-2">
+      <form method="POST" action="/top%brand/">
+        {% csrf_token %}
+        <div class="card top-brand bg-white h-100 w-100">
+          <img src="{% static 'image/' %}{{hcrd.men_ban}}" class="img-thumbnail w-100" alt="...">
+          <input type="hidden" value="{{hcrd.menban_name}}" name="top-brand">
+          <input type="submit" value="{{hcrd.menban_name}}" class="btn topb-btn btn-light">
+        </div>
+      </form>
+    </div>
+    {% endfor %}
+  </div>
+  </form>
+</div>
+
+
+
+<!-- Women Banner -->
+  {% for wbnr in wmnbnr %}
+  <form method="POST" action="/Women%clothing/">
+    {% csrf_token %}
+    <div class="container-fluid mt-4 px-0">
+      <img src="{% static 'image/' %}{{wbnr.women_banner}}" class="img-fluid w-100" alt="...">
+      <input type="hidden" value="{{wbnr.wbanner_name}}" name="Women-clothing">
+      <input type="submit" value="{{wbnr.wbanner_name}}" class="men-btn position-relative">
+    </div>
+  </form>
+  {% endfor %}
+
+
+<!-- Women Cards -->
+<div class="container my-4">
+  <h2 class="fs-6 text-center">Biggest Deals On Top Brands</h2>
+    <div class="row row-cols-3 row-cols-md-4 row-cols-lg-6 g-4">
+      {% for wcard in womencard %}
+      <div class="col p-2">
+        <form method="POST" action="/women%brand/">
+          {% csrf_token %}
+          <div class="card w-100">
+            <img src="{% static 'image/' %}{{wcard.wcard_image}}" class="img-thumbnail w-100" alt="Image Not Found">
+            <input type="hidden" value="{{wcard.wcard_name}}" name="women-brands">
+            <input type="submit" value="{{wcard.wcard_name}}" class="btn w-brand">
+          </div>
+        </form>
+      </div>
+      {% endfor %}
+    </div>
+  </form>
+</div>
+
+<!-- Most-Loved Brands -->
+{% comment %} <div class="container my-4">
+  <h2 class="fs-6 text-center">MOST-LOVED BRANDS</h2>
+  <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
+    {% for wcard2 in womencard2 %}
+    <div class="col">
+      <div class="card">
+        <img src="{% static 'image/' %}{{wcard2.wcard2_image}}" class="card-img-top" alt="Image Not Found">
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div> {% endcomment %}
+
+<!-- Kids Banner -->
+{% comment %} {% for kidbnr in kidsbanner %}
+<div class="container-fluid mt-4">
+  <img src="{% static 'image/' %}{{kidbnr.kidsbnr_image}}" class="img-fluid w-100" alt="Image Not Found">
+</div>
+{% endfor %} {% endcomment %}
+
+
+<!-- Shoes Carousel -->
+<div id="carouselExampleIndicators" class="carousel slide slider mt-5 bg-red rounded">
+  <div class="carousel-indicators">
+    {% for s in shoes %}
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+    {% endfor %}
+  </div>
+    <div class="carousel-inner">
+      {% for s in shoes %}
+      <form method="POST" action="/shoes%brand/">
+        {% csrf_token %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <img src="{% static 'image/' %}{{s.shoes_banner}}" class="d-block w-100" alt="Images Not Found">
+          <input type="hidden" value="{{s.shoes_cat}}" name="shoes-banner">
+          <input type="submit" value="{{s.shoes_cat}}" class="btn scentered-btn bg-white">
+        </div>
+      </form>
+      {% endfor %}
+    </div>
+  </form>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Shoes Cards -->
+<div class="container my-4">
+  <h2 class="fs-6 text-center">STAR BRANDS</h2>
+  <div class="row row-cols-3 row-cols-md-4 row-cols-lg-5">
+    {% for wcard2 in womencard2 %}
+    <div class="col p-2">
+      <form method="POST" action="/star%brand/">
+        {% csrf_token %}
+        <div class="card w-100">
+          <img src="{% static 'image/' %}{{wcard2.wcard2_image}}" class="img-thumbnail w-100" alt="Image Not Found">
+          <input type="hidden" value="{{wcard2.wcard2_name}}" name="star-brands">
+          <input type="submit" value="{{wcard2.wcard2_name}}" class="btn custom-button">
+        </div>
+      </form>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script src="{% static 'js/index.js' %}"></script>
+
+{% endblock %}

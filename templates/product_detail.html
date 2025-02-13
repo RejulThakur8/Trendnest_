@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block start %}
+
+<div class="container-fluid ps-0 pe-0">
+    <div class="head">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb shadow ps-5 p-3 mb-0 mt-1 bg-body-tertiary">
+                <li class="breadcrumb-item"><a href="/products/">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Product</li>
+            </ol>
+        </nav>
+
+            <div class="container-fluid mt-0 bg-body-secondary">
+                    <div class="container-fluid product-details p-0 mx-0">
+                        {% for i in data %}                          
+                        <div class="col-6 col-md-6 col-lg-12 images mt-3">
+                            <img src="{% static 'image/' %}{{i.image1}}" alt="Image Not Found" class="border border-black">
+                            <img src="{% static 'image/' %}{{i.image2}}" alt="Image Not Found" class="border border-black">
+                            <img src="{% static 'image/' %}{{i.image3}}" alt="Image Not Found" class="border border-black">
+                            <img src="{% static 'image/' %}{{i.image4}}" alt="Image Not Found" class="border border-black">
+                            <img src="{% static 'image/' %}{{i.image5}}" alt="Image Not Found" class="border border-black">
+                            <img src="{% static 'image/' %}{{i.image6}}" alt="Image Not Found" class="border border-black">
+                        </div>
+                        <div id="col-4 col-md-6 details">
+                            <ul class="list-group mt-3">
+                                <li class="list-group-item border-0 bg-body-secondary"><strong>Brand :</strong> {{i.brand_name}}</li>
+                                <li class="list-group-item border-0 bg-body-secondary"><strong>Product Title :</strong> {{i.product_title}}</li>
+                                <li class="list-group-item border-0 bg-body-secondary"><strong>Price :</strong> ₹{{i.price}}</li>
+                                <li class="list-group-item border-0 bg-body-secondary"><strong>Rating :</strong> {{i.rating}}</li>
+                          <form method="post" action="/cart/">
+                            {% csrf_token %}
+                              <input type="hidden" name="iid" value={{i.id}}>
+                                <li class="list-group-item border-0 bg-body-secondary" name="si-ze"><strong class="fs-4">Size :</strong>
+                                  <select class="slect-size rounded bg-primary-subtle fs-5 ms-3" name="si-ze" style="width:130px">
+                                    {% for value, display in size_choice %}
+                                    <option value="{{value}}" {% if i.size == value %}Selected{% endif %} class="fs-6">{{display}}</option>
+                                    {% endfor %}
+                                </select>
+                            </ul>
+                            <section class="quantity d-flex ms-0 m-4">
+                              <h6 class="pt-1"><strong class="fs-4">Quantity : </strong></h6>
+                              <div class="quantities border border-black d-flex ms-3 w-50 fs-4 align-items-center rounded">
+                                <span class="subtraction position-start bg-primary rounded-start w-50 h-100">-</span>
+                                <input name="quantity" class="num w-50 text-center" id="quantity" value="1">
+                                <span class="addition bg-primary rounded-end w-50 h-100">+</span>
+                              </div>
+                            </section>
+
+                            {% comment %} Quantity button {% endcomment %}
+
+
+                            {% comment %} <section class="quantity d-flex ms-0 m-2">
+                              <h6><strong class="fs-4 pt-1">Quantity : </strong></h6>
+                              <input type="number" placeholder='QYT' class="rounded" id="qyt" name="qyt" value="1">
+                            </section> {% endcomment %}
+                              <div class="buttons">
+                                <input id="details" type="submit" value="Buy Now" class="btn btn-primary flex-grow-1 fs-4 ms-3 w-50 p-2 mt-3">
+                                <input id="details" type="submit" value="Add To Cart" class="btn btn-outline-secondary flex-grow-1 fs-4 ms-3 w-50 p-2 mt-3 mb-3">
+                              </div>
+                          </form>
+                              
+                        </div>
+                        {% endfor %}
+                    </div>
+            </div>
+    </div>
+</div>
+
+<script src="{% static 'js/product_detail.js' %}"></script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

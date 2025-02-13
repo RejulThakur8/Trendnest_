@@ -1,0 +1,9 @@
+asgiref==3.8.1
+Django==4.2.18    
+gunicorn==23.0.0
+mysqlclient==2.2.7
+packaging==24.2
+pillow==11.1.0
+sqlparse==0.5.3
+typing_extensions==4.12.2
+tzdata==2024.2

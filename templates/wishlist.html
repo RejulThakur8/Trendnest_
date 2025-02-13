@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block start %}
+
+{% if user.is_authenticated %}
+
+
+  <div class="container-fluid">
+    <div class="container my-5">
+      <h1 class="text-center mb-4">My Wishlist</h1>
+
+      {% if error %}
+        <div class="alert alert-danger text-center w-50">
+          {{ error }}
+        </div>
+      {% endif %}
+      
+      
+      {% if wishdata %}
+      <div class="row justify-content-center">
+        {% for i in wishdata %}
+          <div class="col-md-4 col-sm-6 col-lg-3 mb-4">
+            <div class="card shadow-sm">
+              <!-- Correct way to dynamically load images -->
+              {% comment %} <img src="{{ i.image.url }}" class="card-img-top" name="image" alt="Product Image" style="height: 200px; object-fit: cover;"> {% endcomment %}
+               
+              <img src="{{i.product_name.image.url}}" name="image1" class="img-fluid mt-2 ms-2 me-2" alt="{{i.title}}" style="height: 305px; object-fit: cover;">
+              <div class="card-body text-center">
+                <h5 class="card-title">{{ i.product_name }}</h5>
+                <p class="card-text text-muted">Price: {{ i.price }}</p>
+                
+                <button type="submit" class="btn btn-primary btn-block w-100 mt-2">Buy Now</button>
+                
+                <!-- Uncomment and use this form to implement item removal -->
+                <form method="post" action="/wremove/">
+                  {% csrf_token %}
+                  <input type="hidden" name="product_name" value="{{ i.product_name.id }}">
+                  <button type="submit" class="btn btn-danger btn-sm mt-2">Remove</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div class="alert alert-warning text-center">
+        Your wishlist is empty.
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+{% else %}
+
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="alert alert-{{message.tags}} m-3 justify-content-center text-center" role="alert">
+  {{ message }}
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block start %}
+
+{% if user.is_authenticated %}
+<div class="container bg-info mt-5 rounded mb-5 p-1 w-75">
+    <h4 class="text-center p-2">{{request.user}} Add Your Shipping Address</h4>
+    <div class="d-flex justify-content-center p-2">
+        <form method="POST" action="/Shipping/" class="row g-3">
+            {% csrf_token %}
+            <div class="col-md-6">
+                <label for="inputFirstName4" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="inputFirstName4" value={{request.user.first_name}} name="f_name">
+            </div>
+            <div class="col-md-6">
+                <label for="inputLastname4" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="inputLastname4" value={{request.user.last_name}} name="l_name">
+            </div>
+            <div class="col-md-6">
+                <label for="phone" class="form-label">Phone No</label>
+                <input type="tel" class="form-control" id="phone" name="phone_no">
+            </div>
+            <div class="col-md-6">
+                <label for="phone" class="form-label">Alternate Phone No</label>
+                <input type="tel" class="form-control" id="phone" name="Alternate_phone">
+            </div>
+            <div class="col-md-6">
+                <label for="inputAddress" class="form-label">Address 1</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address1">
+            </div>
+            <div class="col-md-6">
+                <label for="inputAddress2" class="form-label">Address 2</label>
+                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="address2">
+            </div>
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">City</label>
+                <input type="text" class="form-control" id="inputCity" name="city">
+            </div>
+            <div class="col-md-4">
+                <label for="inputState" class="form-label">State</label>
+                <input type="text" class="form-control" id="inputState" name="state">
+            </div>
+            <div class="col-md-2">
+                <label for="inputZip" class="form-label">Zip</label>
+                <input type="text" class="form-control" id="inputZip" name="zip">
+            </div>
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-primary">Place To Order</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endif %}
+
+
+<script src="{% static "js/order.js" %}"></script>
+{% endblock %}
