@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-87kqh2+4lz74dg8)pp)km$pvak4_#g+o19s49bmg%%8@f*e18y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["trendnest.onrender.com", "localhost", "127.0.0.1"]
 
