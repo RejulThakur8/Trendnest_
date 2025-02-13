@@ -61,7 +61,7 @@ def signin_user(request):
         else:
             login(request ,user)
             messages.success(request,'successfully login')
-            return redirect('/home/',{'category':category1,'categories':categories,'brand':brands,'product':products})
+            return render(request,'index.html',{'category':category1,'categories':categories,'brand':brands,'product':products})
         
     return render(request,'signin.html',{'category':category1,'categories':categories,'brand':brands,'product':products})
 
@@ -75,7 +75,7 @@ def signout_user(request):
     brands=brand.objects.all()
     products=product.objects.all()
     logout(request)
-    return redirect('/home/',{'category':category1,'categories':categories,'brand':brands,'product':products})
+    return render(request,'index.html',{'category':category1,'categories':categories,'brand':brands,'product':products})
 
 
 # Profile Section --->
@@ -89,7 +89,8 @@ def profile(request):
         return render(request, 'profile.html',{'category':category1,'categories':categories,'brand':brands,'product':products})
     else:
         messages.error(request,"Please login First")
-        return redirect("/home/")
+        return render(request,'index.html',{'category':category1,'categories':categories,'brand':brands,'product':products})
+
     
 # Home Template   ----->
 
@@ -527,7 +528,7 @@ def shipping_address(request):
         zip = request.POST.get("zip")
         Shippingaddress.objects.create(f_name=first_name, l_name=last_name,address1=address1,address2=address2,Phoneno1=phone_no,alterPhone=alternate_no,city=city,state=state,pincode=zip)
         messages.success(request,"Your Order is Successfully Place")
-        return redirect('/home/',{'logo':logo1,'category':category1,'categories':categories,'brand':brands,'product':products})
+        return render(request,'index.html',{'logo':logo1,'category':category1,'categories':categories,'brand':brands,'product':products})
     else:
         return render(request,'Shipping_address.html',{'logo':logo1,'category':category1,'categories':categories,'brand':brands,'product':products})
     
