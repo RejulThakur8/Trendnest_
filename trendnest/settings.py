@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'trend',
         'USER': 'root',
         'PASSWORD': 'mysql',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
