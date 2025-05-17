@@ -44,26 +44,50 @@ def signin_user(request):
     categories=category2.objects.all()
     brands=brand.objects.all()
     products=product.objects.all()
+    bnr=banners.objects.exclude(banner_name='default')
+    homecard=menban.objects.exclude(menban_name='default')
+    smcard=brandbnnr.objects.exclude(brnd_bn="default")
+    menbnr=mbanner.objects.exclude(mbanner_name="default")
+    womenbnr=wbanner.objects.exclude(wbanner_name="default")
+    womencard=hwomencard.objects.exclude(wcard_name='default')
+    shoess=shoes.objects.exclude(shoes_cat='default')
+    womencard2=hwomencard2.objects.all()[:10]
+    for b in bnr:
+        b.banner=os.path.basename(b.banner.url)
+    for hcrd in homecard:
+        hcrd.men_ban=os.path.basename(hcrd.men_ban.url)
+    for scard in smcard:
+        scard.s_card=os.path.basename(scard.s_card.url)
+    for mbnr in menbnr:
+        mbnr.mbanner_image=os.path.basename(mbnr.mbanner_image.url)
+    for wbnr in womenbnr:
+        wbnr.women_banner=os.path.basename(wbnr.women_banner.url)
+    for wcrd in womencard:
+        wcrd.wcard_image=os.path.basename(wcrd.wcard_image.url)
+    for wcrd2 in womencard2:
+        wcrd2.wcard2_image=os.path.basename(wcrd2.wcard2_image.url)
+    for s in shoess:
+        s.shoes_banner=os.path.basename(s.shoes_banner.url)
     if request.method == "POST":
         username=request.POST.get('username')
         password=request.POST.get('password')
 
         if not User.objects.filter(username = username).exists():
             messages.warning(request, 'Invalid Username')
-            return redirect('/signin/',{'category':category1,'categories':categories,'brand':brands,'product':products})
+            return redirect('/signin/',{'banner':bnr,'hcard':homecard,'smallcard':smcard,'mbnr':menbnr,'wmnbnr':womenbnr,'womencard':womencard,'womencard2':womencard2,'shoes':shoess,'category':category1,'categories':categories[:2],'brand':brands,'product':products})
         
         user = authenticate(username = username, password = password)
 
         if user is None:
             messages.error(request,'Invalid Password')
-            return redirect('/signin/',{'category':category1,'categories':categories,'brand':brands,'product':products})
+            return redirect('/signin/',{'banner':bnr,'hcard':homecard,'smallcard':smcard,'mbnr':menbnr,'wmnbnr':womenbnr,'womencard':womencard,'womencard2':womencard2,'shoes':shoess,'category':category1,'categories':categories[:2],'brand':brands,'product':products})
         
         else:
             login(request ,user)
-            messages.success(request,'successfully login')
-            return render(request,'index.html',{'category':category1,'categories':categories,'brand':brands,'product':products})
+            messages.success(request,'successfully login Countinue shopping!')
+            return render(request,'index.html',{'banner':bnr,'hcard':homecard,'smallcard':smcard,'mbnr':menbnr,'wmnbnr':womenbnr,'womencard':womencard,'womencard2':womencard2,'shoes':shoess,'category':category1,'categories':categories[:2],'brand':brands,'product':products})
         
-    return render(request,'signin.html',{'category':category1,'categories':categories,'brand':brands,'product':products})
+    return render(request,'signin.html',{'banner':bnr,'hcard':homecard,'smallcard':smcard,'mbnr':menbnr,'wmnbnr':womenbnr,'womencard':womencard,'womencard2':womencard2,'shoes':shoess,'category':category1,'categories':categories[:2],'brand':brands,'product':products})
 
 
 
@@ -74,8 +98,32 @@ def signout_user(request):
     categories=category2.objects.all()
     brands=brand.objects.all()
     products=product.objects.all()
+    bnr=banners.objects.exclude(banner_name='default')
+    homecard=menban.objects.exclude(menban_name='default')
+    smcard=brandbnnr.objects.exclude(brnd_bn="default")
+    menbnr=mbanner.objects.exclude(mbanner_name="default")
+    womenbnr=wbanner.objects.exclude(wbanner_name="default")
+    womencard=hwomencard.objects.exclude(wcard_name='default')
+    shoess=shoes.objects.exclude(shoes_cat='default')
+    womencard2=hwomencard2.objects.all()[:10]
+    for b in bnr:
+        b.banner=os.path.basename(b.banner.url)
+    for hcrd in homecard:
+        hcrd.men_ban=os.path.basename(hcrd.men_ban.url)
+    for scard in smcard:
+        scard.s_card=os.path.basename(scard.s_card.url)
+    for mbnr in menbnr:
+        mbnr.mbanner_image=os.path.basename(mbnr.mbanner_image.url)
+    for wbnr in womenbnr:
+        wbnr.women_banner=os.path.basename(wbnr.women_banner.url)
+    for wcrd in womencard:
+        wcrd.wcard_image=os.path.basename(wcrd.wcard_image.url)
+    for wcrd2 in womencard2:
+        wcrd2.wcard2_image=os.path.basename(wcrd2.wcard2_image.url)
+    for s in shoess:
+        s.shoes_banner=os.path.basename(s.shoes_banner.url)
     logout(request)
-    return render(request,'index.html',{'category':category1,'categories':categories,'brand':brands,'product':products})
+    return render(request,'index.html',{'banner':bnr,'hcard':homecard,'smallcard':smcard,'mbnr':menbnr,'wmnbnr':womenbnr,'womencard':womencard,'womencard2':womencard2,'shoes':shoess,'category':category1,'categories':categories[:2],'brand':brands,'product':products})
 
 
 # Profile Section --->
@@ -516,6 +564,31 @@ def shipping_address(request):
     brands=brand.objects.all()
     products=product.objects.all()
     logo1=logo.objects.all()
+    bnr=banners.objects.exclude(banner_name='default')
+    homecard=menban.objects.exclude(menban_name='default')
+    smcard=brandbnnr.objects.exclude(brnd_bn="default")
+    menbnr=mbanner.objects.exclude(mbanner_name="default")
+    womenbnr=wbanner.objects.exclude(wbanner_name="default")
+    womencard=hwomencard.objects.exclude(wcard_name='default')
+    shoess=shoes.objects.exclude(shoes_cat='default')
+    womencard2=hwomencard2.objects.all()[:10]
+    for b in bnr:
+        b.banner=os.path.basename(b.banner.url)
+    for hcrd in homecard:
+        hcrd.men_ban=os.path.basename(hcrd.men_ban.url)
+    for scard in smcard:
+        scard.s_card=os.path.basename(scard.s_card.url)
+    for mbnr in menbnr:
+        mbnr.mbanner_image=os.path.basename(mbnr.mbanner_image.url)
+    for wbnr in womenbnr:
+        wbnr.women_banner=os.path.basename(wbnr.women_banner.url)
+    for wcrd in womencard:
+        wcrd.wcard_image=os.path.basename(wcrd.wcard_image.url)
+    for wcrd2 in womencard2:
+        wcrd2.wcard2_image=os.path.basename(wcrd2.wcard2_image.url)
+    for s in shoess:
+        s.shoes_banner=os.path.basename(s.shoes_banner.url)
+
     if request.method =="POST":
         first_name = request.POST.get("f_name")
         last_name = request.POST.get("l_name")
@@ -528,9 +601,9 @@ def shipping_address(request):
         zip = request.POST.get("zip")
         Shippingaddress.objects.create(f_name=first_name, l_name=last_name,address1=address1,address2=address2,Phoneno1=phone_no,alterPhone=alternate_no,city=city,state=state,pincode=zip)
         messages.success(request,"Your Order is Successfully Place")
-        return render(request,'index.html',{'logo':logo1,'category':category1,'categories':categories,'brand':brands,'product':products})
+        return render(request,'index.html',{'logo':logo1,'banner':bnr,'hcard':homecard,'smallcard':smcard,'mbnr':menbnr,'wmnbnr':womenbnr,'womencard':womencard,'womencard2':womencard2,'shoes':shoess,'category':category1,'categories':categories[:2],'brand':brands,'product':products})
     else:
-        return render(request,'Shipping_address.html',{'logo':logo1,'category':category1,'categories':categories,'brand':brands,'product':products})
+        return render(request,'Shipping_address.html',{'logo':logo1,'banner':bnr,'hcard':homecard,'smallcard':smcard,'mbnr':menbnr,'wmnbnr':womenbnr,'womencard':womencard,'womencard2':womencard2,'shoes':shoess,'category':category1,'categories':categories[:2],'brand':brands,'product':products})
     
 
 def order(request):

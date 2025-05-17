@@ -98,8 +98,8 @@
 
   {% for message in messages %}
 
-  <div class="alert alert-{{message.tags}}" role="alert">
-    {{message}}
+  <div class="alert alert-{{message.tags}} m-3 justify-content-center text-center" role="alert">
+    {{message}} <a href="/signin/">Click here to login</a>
   </div>
 
   {% endfor %}
