@@ -80,11 +80,11 @@ WSGI_APPLICATION = 'trendnest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('trend'),
-        'USER': os.environ.get('root'),
-        'PASSWORD': os.environ.get('mysql'),
-        'HOST':  os.environ.get('127.0.0.1'),
-        'PORT': os.environ.get('3306'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST':  os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 
