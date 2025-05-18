@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-87kqh2+4lz74dg8)pp)km$pvak4_#g+o19s49bmg%%8@f*e18y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -49,6 +49,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'trendnest.urls'
@@ -78,11 +80,11 @@ WSGI_APPLICATION = 'trendnest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'trend',
-        'USER': 'root',
-        'PASSWORD': 'mysql',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'NAME': os.environ.get('trend'),
+        'USER': os.environ.get('root'),
+        'PASSWORD': os.environ.get('mysql'),
+        'HOST':  os.environ.get('127.0.0.1'),
+        'PORT': os.environ.get('3306'),
     }
 }
 
@@ -127,11 +129,14 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'statics/'),]
 
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 
 # Default primary key field type
