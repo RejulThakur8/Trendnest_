@@ -62,7 +62,7 @@
 
 <!-- men Banner -->
   {% for mbnr in mbnr %}
-  <form method="POST" action="/Men%clothing/">
+  <form method="POST" action="/Men-clothing/">
     {% csrf_token %}
     <div class="container-fluid mt-4 px-0">
       <img src="{% static 'image/' %}{{mbnr.mbanner_image}}" class="img-fluid w-100" alt="...">
@@ -78,7 +78,7 @@
   <div class="row row-cols-3 row-cols-md-4 row-cols-lg-5 g-2">
     {% for hcrd in hcard %}
     <div class="col top-brand-card p-2">
-      <form method="POST" action="/top%brand/">
+      <form method="POST" action="/top-brand/">
         {% csrf_token %}
         <div class="card top-brand bg-white h-100 w-100">
           <img src="{% static 'image/' %}{{hcrd.men_ban}}" class="img-thumbnail w-100" alt="...">
@@ -96,7 +96,7 @@
 
 <!-- Women Banner -->
   {% for wbnr in wmnbnr %}
-  <form method="POST" action="/Women%clothing/">
+  <form method="POST" action="/Women-clothing/">
     {% csrf_token %}
     <div class="container-fluid mt-4 px-0">
       <img src="{% static 'image/' %}{{wbnr.women_banner}}" class="img-fluid w-100" alt="...">
@@ -113,7 +113,7 @@
     <div class="row row-cols-3 row-cols-md-4 row-cols-lg-6 g-4">
       {% for wcard in womencard %}
       <div class="col p-2">
-        <form method="POST" action="/women%brand/">
+        <form method="POST" action="/women-brand/">
           {% csrf_token %}
           <div class="card w-100">
             <img src="{% static 'image/' %}{{wcard.wcard_image}}" class="img-thumbnail w-100" alt="Image Not Found">
@@ -158,7 +158,7 @@
   </div>
     <div class="carousel-inner">
       {% for s in shoes %}
-      <form method="POST" action="/shoes%brand/">
+      <form method="POST" action="/shoes-brand/">
         {% csrf_token %}
         <div class="carousel-item {% if forloop.first %}active{% endif %}">
           <img src="{% static 'image/' %}{{s.shoes_banner}}" class="d-block w-100" alt="Images Not Found">
@@ -185,7 +185,7 @@
   <div class="row row-cols-3 row-cols-md-4 row-cols-lg-5">
     {% for wcard2 in womencard2 %}
     <div class="col p-2">
-      <form method="POST" action="/star%brand/">
+      <form method="POST" action="/star-brand/">
         {% csrf_token %}
         <div class="card w-100">
           <img src="{% static 'image/' %}{{wcard2.wcard2_image}}" class="img-thumbnail w-100" alt="Image Not Found">
