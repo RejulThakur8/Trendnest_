@@ -1,1 +1,1 @@
-web: gunicorn Trendnest.wsgi:application    
+web: gunicorn trendnest.wsgi:application    
